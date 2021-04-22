@@ -1,5 +1,7 @@
 node_modules
-
-out/
+dist/win-unpacked
+dist/**/*.yml
+dist/**/*.yaml
+dist/**/*.blockmap
 **/obj
 **/bin

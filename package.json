@@ -19,7 +19,7 @@
         "appId": "mobnet.app",
         "productName": "Mobnet App",
         "directories": {
-            "output": "build"
+            "output": "dist"
         },
         "files": [
             "package.json", 
