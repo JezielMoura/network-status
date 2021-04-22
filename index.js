@@ -24,7 +24,7 @@ app.whenReady().then(() =>
             createWindow()
     })
     
-	app.on('window-all-closed', () => 
+    app.on('window-all-closed', () => 
     {
         apiProcess.kill()
         app.quit()
