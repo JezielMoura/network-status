@@ -9,7 +9,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      uses: actions/checkout@v2
+      - name: "Build"
+        uses: actions/checkout@v2
       - name: Build
         run: echo "Build"
       - name: Release
