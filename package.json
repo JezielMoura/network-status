@@ -2,7 +2,7 @@
     "name": "electron-app",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "index.cjs",
     "scripts": {
         "start": "electron .",
         "pack": "electron-builder --dir",
@@ -30,18 +30,11 @@
         },
         "files": [
             "package.json",
-            "index.js",
-            {
-                "from": "svelte-build",
-                "to": "",
-                "filter": [
-                    "**/*"
-                ]
-            }
+            "index.cjs"
         ],
         "extraResources": [
             {
-                "from": "dotnet-build",
+                "from": "build",
                 "to": "api",
                 "filter": [
                     "**/*"

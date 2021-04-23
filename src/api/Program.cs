@@ -9,9 +9,10 @@ using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Http;
 
 WebHost.CreateDefaultBuilder()
+    .UseWebRoot(System.AppDomain.CurrentDomain.BaseDirectory)
     .ConfigureServices(services => 
     {
-        services.AddControllers().AddJsonOptions(options 
+        services.AddControllersWithViews().AddJsonOptions(options 
             => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles );
             
         services.AddSwaggerGen(c 
@@ -33,8 +34,7 @@ WebHost.CreateDefaultBuilder()
         app.UseRouting();
         app.UseEndpoints(endpoints => { 
             endpoints.MapControllers();
-
-            endpoints.MapGet("/", http => http.Response.WriteAsync("Ola Mundo"));
+            endpoints.MapGet("/api", http => http.Response.WriteAsync("Ola Mundo"));
         });
     })
-    .Build().Run();
+    .UseUrls("http://*:5000").Build().Run();

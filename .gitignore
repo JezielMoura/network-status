@@ -6,3 +6,5 @@ dist/**/*.blockmap
 **/obj
 **/bin
 .svelte
+dotnet-build
+svelte-build
