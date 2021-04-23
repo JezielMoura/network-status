@@ -5,3 +5,4 @@ dist/**/*.yaml
 dist/**/*.blockmap
 **/obj
 **/bin
+.svelte

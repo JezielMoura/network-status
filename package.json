@@ -6,15 +6,22 @@
     "scripts": {
         "start": "electron .",
         "pack": "electron-builder --dir",
-        "dist": "electron-builder"
+        "dist": "electron-builder",
+        "dev": "svelte-kit dev -p 8080",
+        "build": "npm ci && svelte-kit build"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "devDependencies": {
         "electron": "^12.0.5",
-        "electron-builder": "^22.10.5"
+        "electron-builder": "^22.10.5",
+        "@sveltejs/adapter-static": "next",
+        "@sveltejs/kit": "next",
+        "svelte": "^3.29.0",
+        "vite": "^2.1.0"
     },
+    "type": "module",
     "build": {
         "appId": "mobnet.app",
         "productName": "Mobnet App",
@@ -22,19 +29,23 @@
             "output": "dist"
         },
         "files": [
-            "package.json", 
+            "package.json",
             "index.js",
             {
                 "from": "svelte-build",
                 "to": "",
-                "filter": ["**/*"]
+                "filter": [
+                    "**/*"
+                ]
             }
         ],
         "extraResources": [
             {
                 "from": "dotnet-build",
                 "to": "api",
-                "filter": ["**/*"]
+                "filter": [
+                    "**/*"
+                ]
             }
         ],
         "asar": false,
