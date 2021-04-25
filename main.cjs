@@ -28,6 +28,7 @@ function createMainWindow()
     });
 
     mainWindow.removeMenu();
+    mainWindow.maximize();
 
     if(isdev) 
     {
