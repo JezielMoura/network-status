@@ -18,5 +18,5 @@ import Ping from "../components/ping.svelte";
 <Ping icon="router.png" ip="192.168.1.6" title="Restaurante"></Ping>
 <Ping icon="router.png" ip="192.168.1.7" title="Bar"></Ping>
 <Ping icon="router.png" ip="192.168.1.9" title="Estoque"></Ping>
-<Ping icon="print.png" ip="192.168.1.161" title="Impressora Restaurante"></Ping>
-<Ping icon="print.png" ip="192.168.1.162" title="Impressora Bar"></Ping>
+<Ping icon="print.png" ip="192.168.1.161" title="Restaurante"></Ping>
+<Ping icon="print.png" ip="192.168.1.162" title="Bar"></Ping>
