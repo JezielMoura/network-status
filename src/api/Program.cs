@@ -42,7 +42,7 @@ WebHost.CreateDefaultBuilder()
             endpoints.MapDefaultControllerRoute();
             endpoints.MapGet("/api/{ip}", async http => { 
                 var ip = http.Request.RouteValues["ip"] as string;
-                var ping = new Ping().Send(ip, 500);
+                var ping = new Ping().Send(ip, 5000);
                 await http.Response.WriteAsync((ping.Status == IPStatus.Success).ToString());
             });
         });
