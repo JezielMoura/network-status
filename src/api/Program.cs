@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Http;
+using System.Net.NetworkInformation;
 
 WebHost.CreateDefaultBuilder()
     .UseWebRoot(System.AppDomain.CurrentDomain.BaseDirectory)
@@ -14,6 +15,10 @@ WebHost.CreateDefaultBuilder()
     {
         services.AddControllersWithViews().AddJsonOptions(options 
             => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles );
+
+        services.AddCors(c => {
+            c.AddPolicy("AllowAll", p => p.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+        });
             
         services.AddSwaggerGen(c 
             => c.SwaggerDoc("v1", new OpenApiInfo { Title = "Mobnet SoftCloud API", Version = "1.0.0" }));
@@ -30,11 +35,16 @@ WebHost.CreateDefaultBuilder()
                 => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Mobnet SoftCloud API 1.0.0"));
         }
 
+        app.UseCors("AllowAll");
         app.UseStaticFiles();
         app.UseRouting();
         app.UseEndpoints(endpoints => { 
-            endpoints.MapControllers();
-            endpoints.MapGet("/api", http => http.Response.WriteAsync("Ola Mundo"));
+            endpoints.MapDefaultControllerRoute();
+            endpoints.MapGet("/api/{ip}", async http => { 
+                var ip = http.Request.RouteValues["ip"] as string;
+                var ping = new Ping().Send(ip, 500);
+                await http.Response.WriteAsync((ping.Status == IPStatus.Success).ToString());
+            });
         });
     })
     .UseUrls("http://*:5000").Build().Run();

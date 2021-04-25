@@ -1,0 +1,32 @@
+{
+    "appId": "mobnet.app",
+    "productName": "Mobnet App",
+    "directories": {
+        "output": "dist"
+    },
+    "files": [
+        "package.json",
+        "main.cjs"
+    ],
+    "extraResources": [
+        {
+            "from": "dotnet-build",
+            "to": "api",
+            "filter": [
+                "**/*"
+            ]
+        },
+        {
+            "from": "svelte-build",
+            "to": "app",
+            "filter": [
+                "**/*"
+            ]
+        }
+    ],
+    "asar": false,
+    "win": {
+        "target": "nsis",
+        "icon": "src/app/assets/icon.png"
+    }
+}
